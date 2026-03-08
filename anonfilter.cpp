@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2026 dannyAAM
+ * Copyright (C) 2026 dannyAAM, mihi
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License version 2 as published
@@ -14,6 +14,7 @@
 // hope ZNC never change this...?
 #define ZNC_DEF_REALNAME "ZNC - https://znc.in"
 
+// from: http://git.idk.i2p/I2P_Developers/i2p.i2p/src/commit/9e18bded7b8da5660f28d68afd0c83292a0272e4/apps/i2ptunnel/java/src/net/i2p/i2ptunnel/irc/IRCFilter.java#L29-L51
 static const VCString AllowedInbound = {
     // "NOTICE", // can contain CTCP
     "PING",
@@ -37,6 +38,7 @@ static const VCString AllowedInbound = {
     "CHGHOST"   // https://ircv3.net/specs/extensions/chghost
 };
 
+// from: http://git.idk.i2p/I2P_Developers/i2p.i2p/src/commit/9e18bded7b8da5660f28d68afd0c83292a0272e4/apps/i2ptunnel/java/src/net/i2p/i2ptunnel/irc/IRCFilter.java#L163-L277
 static const VCString AllowedOutbound = {
     // Commands that regular users might use
     "ACCEPT", // Inspircd's m_callerid.so module
