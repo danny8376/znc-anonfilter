@@ -9,7 +9,6 @@
 #include <znc/znc.h>
 #include <znc/IRCNetwork.h>
 #include <znc/IRCSock.h>
-#include <znc/User.h>
 
 // hope ZNC never change this...?
 #define ZNC_DEF_REALNAME "ZNC - https://znc.in"
