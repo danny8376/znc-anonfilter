@@ -193,6 +193,15 @@ class AnonFilterMod : public CModule {
         return true;
     }
 
+    static bool isAllowedCmd(const VCString list, const CString& cmd) {
+        for (const CString& v : list) {
+            if (v.Equals(cmd)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     EModRet filterI2PDCCAddr(CCTCPMessage& msg) {
         CString sL = msg.GetText();
         CString sType = sL.Token(1, false, " ", false, "\"", "\"", true);
@@ -264,10 +273,12 @@ class AnonFilterMod : public CModule {
                     return HALT;
                 }
                 return CONTINUE;
+            default:
+                // just to surpress warning
+                break;
         }
         // for the rest, check against allow list
-        if (std::find(AllowedInbound.begin(), AllowedInbound.end(), msg.GetCommand()) !=
-                AllowedInbound.end()) {
+        if (isAllowedCmd(AllowedInbound, msg.GetCommand())) {
             return CONTINUE;
         } else {
             return HALT;
@@ -337,10 +348,12 @@ class AnonFilterMod : public CModule {
                     msg.SetParam(3, realname.Equals(ZNC_DEF_REALNAME) ? "realname" : realname);
                     return CONTINUE;
                 }
+            default:
+                // just to surpress warning
+                break;
         }
         // for the rest, check against allow list
-        if (std::find(AllowedOutbound.begin(), AllowedOutbound.end(), msg.GetCommand()) !=
-                AllowedOutbound.end()) {
+        if (isAllowedCmd(AllowedOutbound, msg.GetCommand())) {
             return CONTINUE;
         } else {
             return HALT;
